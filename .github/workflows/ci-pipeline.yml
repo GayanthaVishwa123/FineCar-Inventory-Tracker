@@ -32,12 +32,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # අප සෑදූ Custom Composite Action එක මෙතැනදී කැඳවයි
+      # Run our custom composite action
       - name: Run Environment Setup Action
         id: setup
         uses: ./.github/actions/setup-env
 
-      # seching test database is ready before running tests
+      # Search test database ready before running tests
       - name: Run Tests with Pytest
         env:
           DATABASE_URL: postgresql://test_user:test_password@localhost:5432/test_db
