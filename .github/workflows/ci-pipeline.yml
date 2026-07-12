@@ -15,9 +15,9 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
-          POSTGRES_DB: test_db
+          POSTGRES_USER: DB_USER
+          POSTGRES_PASSWORD: DB_PASSWORD
+          POSTGRES_DB: DB_NAME
         ports:
           - 5432:5432
         # Define health checks to ensure the data base is redy before running  tests
@@ -40,9 +40,10 @@ jobs:
       # Search test database ready before running tests
       - name: Run Tests with Pytest
         env:
-          DATABASE_URL: postgresql://test_user:test_password@localhost:5432/test_db
+          DATABASE_URL: postgresql://DB_USER:DB_PASSWORD@localhost:5432/DB_NAME
         run: |
           pytest
+          python -m pytest tests/test_db_connection.py
 
       - name: List files
         shell: bash
