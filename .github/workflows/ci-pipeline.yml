@@ -44,6 +44,10 @@ jobs:
         run: |
           python -m pytest
 
+      - name: List files
+        shell: bash
+        run: ls -R
+
       # Custom Action out out status prints
       - name: Print Custom Action Output Status
         run: echo "Dependency setup status was ${{ steps.setup.outputs.status }}"
